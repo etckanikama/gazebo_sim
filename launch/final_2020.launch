@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="ojama" default="true"/>
+  <arg name="beego" default="true"/>
+  <arg name="rviz" default="true"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find yamasemi_sim)/world/final_2020.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <group if="$(arg ojama)">
+    <include file="$(find yamasemi_sim)/launch/ojama.launch">
+      <arg name="initial_x" value="0.3"/>
+      <arg name="initial_y" value="-0.4"/>
+      <arg name="initial_z" value="0.0"/>
+      <arg name="initial_R" value="0.0"/>
+      <arg name="initial_P" value="0.0"/>
+      <arg name="initial_Y" value="0.0"/>
+      <arg name="move_dist" default="2.5"/>
+      <arg name="move_vel" default="0.3"/>
+      <arg name="stop_time" default="0.5"/>
+    </include>
+  </group>
+
+  <group if="$(arg beego)">
+    <include file="$(find beego_gazebo)/launch/beego.launch">
+      <arg name="x" value="1.5"/>
+      <arg name="y" value="-1.75"/>
+      <arg name="z" value="0.0"/>
+      <arg name="R" value="0.0"/>
+      <arg name="P" value="0.0"/>
+      <arg name="Y" value="3.14"/>
+      <arg name="ns" default="beego"/>
+      <arg name="rviz" default="$(arg rviz)"/>
+    </include>
+  </group>
+
+</launch>
