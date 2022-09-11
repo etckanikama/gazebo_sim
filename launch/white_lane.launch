@@ -1,13 +1,29 @@
 <?xml version="1.0"?>
 <launch>
+  <arg name="beego" default="true"/>
+  <arg name="rviz" default="true"/>
+
   
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find sim)/world/test.world"/>
+    <!-- <arg name="world_name" value="$(find sim)/world/test.world"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
     <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
+    <arg name="debug" value="false"/> -->
   </include>
+  
+  <include file="$(find beego_gazebo)/launch/beego.launch">
+    <arg name="x" value="1.5"/>
+    <arg name="y" value="-1.75"/>
+    <arg name="z" value="0.0"/>
+    <arg name="R" value="0.0"/>
+    <arg name="P" value="0.0"/>
+    <arg name="Y" value="3.14"/>
+    <arg name="ns" default="beego"/>
+    <arg name="rviz" default="true"/>
+  </include>
+  
+
 
 </launch>
